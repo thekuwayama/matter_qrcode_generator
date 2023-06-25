@@ -63,3 +63,11 @@ Options:
   -h, --help     Print help
   -V, --version  Print version
 ```
+
+
+## License
+
+Licensed under either of
+
+- Apache License, Version 2.0 ([LICENSE-APACHE](https://github.com/thekuwayama/cron_cal/blob/main/LICENSE-APACHE) or http://apache.org/licenses/LICENSE-2.0)
+- MIT license ([LICENSE-MIT](https://github.com/thekuwayama/cron_cal/blob/main/LICENSE-MIT) or http://opensource.org/licenses/MIT)
