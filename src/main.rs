@@ -1,4 +1,5 @@
 use std::env;
+use std::io::Write;
 use std::process;
 
 use env_logger;
@@ -95,7 +96,9 @@ fn do_print_pairing_code_and_qr(
     discriminator: u16,
 ) {
     env::set_var("RUST_LOG", "info");
-    env_logger::init();
+    env_logger::Builder::from_default_env()
+        .format(|buf, record| writeln!(buf, "{}", record.args()))
+        .init();
 
     let dev_info = BasicInfoConfig {
         vid,
