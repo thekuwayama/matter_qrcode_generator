@@ -1,6 +1,8 @@
 # matter-qrcode-generator
 
+[![CI](https://github.com/thekuwayama/matter-qrcode-generator/workflows/CI/badge.svg)](https://github.com/thekuwayama/matter-qrcode-generator/actions?workflow=CI)
 [![license](https://img.shields.io/crates/l/asaru.svg)](https://raw.githubusercontent.com/thekuwayama/asaru/main/LICENSE-APACHE)
+[![dependency status](https://deps.rs/repo/github/thekuwayama/matter-qrcode-generator/status.svg)](https://deps.rs/repo/github/thekuwayama/matter-qrcode-generator)
 
 `matter-qrcode-generator` is QR-code generator for Matter.
 
