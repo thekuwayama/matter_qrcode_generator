@@ -1,0 +1,11 @@
+[package]
+name = "matter-qrcode-generator"
+version = "0.1.0"
+authors = ["thekuwayama <thekuwayama@gmail.com>"]
+description = "QR-code generator for Matter"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+matter-iot = { git = "https://github.com/project-chip/matter-rs" }
