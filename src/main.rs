@@ -1,7 +1,6 @@
 use matter::core::CommissioningData;
 use matter::data_model::cluster_basic_information::BasicInfoConfig;
-use matter::pairing::print_pairing_code_and_qr;
-use matter::pairing::DiscoveryCapabilities;
+use matter::pairing::{print_pairing_code_and_qr, DiscoveryCapabilities};
 use matter::secure_channel::spake2p::VerifierData;
 
 fn main() {
