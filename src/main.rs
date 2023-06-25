@@ -55,12 +55,12 @@ fn main() {
             eprintln!("failed, <{}> should be string", cli::DEVICE_NAME);
             process::exit(1);
         });
-    let verifier = matches
-        .get_one::<String>(cli::VERIFIER)
+    let passcode = matches
+        .get_one::<String>(cli::PASSCODE)
         .unwrap()
         .parse::<u32>()
         .unwrap_or_else(|_| {
-            eprintln!("failed, <{}> should be integer", cli::VERIFIER);
+            eprintln!("failed, <{}> should be integer", cli::PASSCODE);
             process::exit(1);
         });
     let discriminator = matches
@@ -79,7 +79,7 @@ fn main() {
         sw_ver,
         serial_no.to_string(),
         device_name.to_string(),
-        verifier,
+        passcode,
         discriminator,
     );
 }
@@ -92,7 +92,7 @@ fn do_print_pairing_code_and_qr(
     sw_ver: u32,
     serial_no: String,
     device_name: String,
-    verifier: u32,
+    passcode: u32,
     discriminator: u16,
 ) {
     env::set_var("RUST_LOG", "info");
@@ -110,7 +110,7 @@ fn do_print_pairing_code_and_qr(
         device_name,
     };
     let comm_data = CommissioningData {
-        verifier: VerifierData::new_with_pw(verifier),
+        verifier: VerifierData::new_with_pw(passcode), // 27-bit
         discriminator,
     };
     // Discovery Capabilities Bitmask

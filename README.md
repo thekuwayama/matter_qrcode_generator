@@ -47,7 +47,7 @@ $ cargo install --git https://github.com/thekuwayama/matter-qrcode-generator.git
 $ matter-qrcode-generator --help
 QR-code generator for Matter
 
-Usage: matter-qrcode-generator <VENDOR_ID> <PRODUCT_ID> <HARDWARE_VERSION> <SOFTWARE_VERSION> <SERIAL_NUMBER> <DEVICE_NAME> <VERIFIER> <DISCRIMINATOR>
+Usage: matter-qrcode-generator <VENDOR_ID> <PRODUCT_ID> <HARDWARE_VERSION> <SOFTWARE_VERSION> <SERIAL_NUMBER> <DEVICE_NAME> <PASSCODE> <DISCRIMINATOR>
 
 Arguments:
   <VENDOR_ID>         Vendor ID
@@ -56,7 +56,7 @@ Arguments:
   <SOFTWARE_VERSION>  software version
   <SERIAL_NUMBER>     serial number
   <DEVICE_NAME>       device name
-  <VERIFIER>          verifier
+  <PASSCODE>          passcode
   <DISCRIMINATOR>     discriminator
 
 Options:
