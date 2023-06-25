@@ -1,5 +1,7 @@
 # matter-qrcode-generator
 
+[![license](https://img.shields.io/crates/l/asaru.svg)](https://raw.githubusercontent.com/thekuwayama/asaru/main/LICENSE-APACHE)
+
 `matter-qrcode-generator` is QR-code generator for Matter.
 
 
