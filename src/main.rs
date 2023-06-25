@@ -105,7 +105,7 @@ fn do_print_pairing_code_and_qr(
         pid,
         hw_ver,
         sw_ver,
-        sw_ver_str: sw_ver.to_string(),
+        sw_ver_str: sw_ver.to_string(), // human-readable representation of SoftwareVersion; for example, "1.0", "1.2.3456", "1.2-2", "1.0b123", "1.2_3".
         serial_no,
         device_name,
     };
@@ -113,6 +113,10 @@ fn do_print_pairing_code_and_qr(
         verifier: VerifierData::new_with_pw(verifier),
         discriminator,
     };
+    // Discovery Capabilities Bitmask
+    // 0 bit: Device supports hosting a Soft-AP when not commissioned.
+    // 1 bit: Device supports BLE for discovery when not commissioned.
+    // 2 bit: Device is already on the IP network
     let discovery_capabilities = DiscoveryCapabilities::new(true, true, true);
     print_pairing_code_and_qr(&dev_info, &comm_data, discovery_capabilities);
 }
