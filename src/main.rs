@@ -2,7 +2,6 @@ use std::env;
 use std::io::Write;
 use std::process;
 
-use env_logger;
 use matter::core::CommissioningData;
 use matter::data_model::cluster_basic_information::BasicInfoConfig;
 use matter::pairing::{print_pairing_code_and_qr, DiscoveryCapabilities};
@@ -85,6 +84,7 @@ fn main() {
     );
 }
 
+#[allow(clippy::too_many_arguments)]
 fn do_print_pairing_code_and_qr(
     vid: u16,
     pid: u16,
