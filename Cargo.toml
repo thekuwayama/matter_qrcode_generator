@@ -1,5 +1,5 @@
 [package]
-name = "matter-qrcode-generator"
+name = "matter_qrcode_generator"
 version = "0.1.0"
 authors = ["thekuwayama <thekuwayama@gmail.com>"]
 description = "QR-code generator for Matter"
