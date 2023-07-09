@@ -1,2 +1,0 @@
-[workspace]
-members = ["matter_qrcode_generator", "matter_qrcode_generator_wasm"]
