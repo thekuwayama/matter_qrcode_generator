@@ -57,6 +57,11 @@ Options:
   -V, --version  Print version
 ```
 
+## GUI
+`matter_qrcode_generator_wasm` is a Web Application to print QR-code using Wasm.
+
+- https://thekuwayama.github.io/matter_qrcode_generator/
+
 
 ## License
 
