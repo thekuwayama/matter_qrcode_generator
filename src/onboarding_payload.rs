@@ -47,7 +47,7 @@ impl OnboardingPayload {
         let mut res = vec![0; 11];
 
         let d = self.discovery_capabilities.bits();
-        res[0] = self.version.reverse_bits() as u8 | (self.vendor_id.reverse_bits() >> 11) as u8;
+        res[0] = self.version.reverse_bits() | (self.vendor_id.reverse_bits() >> 11) as u8;
         res[1] = ((self.vendor_id.reverse_bits() << 5) >> 8) as u8;
         res[2] = ((self.vendor_id.reverse_bits() << 13) >> 8) as u8
             | (self.product_id.reverse_bits() >> 11) as u8;
