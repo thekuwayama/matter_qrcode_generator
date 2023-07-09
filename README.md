@@ -8,28 +8,25 @@
 
 
 ```sh-session
-$ matter-qrcode-generator 65521 32770 2 1 aabbccdd test 123456 250
-Pairing Code: 0087-6800-071
+$ matter-qrcode-generator 65521 32770 123456 250
 
-█████████████████████████████████████
-█████████████████████████████████████
-████ ▄▄▄▄▄ █▄██▄████▀▄ ▄ █ ▄▄▄▄▄ ████
-████ █   █ █▀▀▀█▀▄▀  ▀█▄ █ █   █ ████
-████ █▄▄▄█ █  █▄▄  ▀▄ ▀▄▄█ █▄▄▄█ ████
-████▄▄▄▄▄▄▄█ ▀▄▀ █ █▄▀▄█ █▄▄▄▄▄▄▄████
-████▄▀██▄▀▄  ▄██▀▄▄▄▄▀  ▄▄▄   ██▄████
-████ █ ▄▀ ▄▄█▀▀▄  ▄ ▀ ▄█▄▀ ▀█ ▀▀ ████
-█████ ▄█▄▀▄▀▄█▀▄  ▀█▀  █▀▀▄▄ ▄▀▀ ████
-████▄▄  █ ▄█  ▄███▀█▄▄  █ ▀▄█ ▄█▄████
-████▀▀ ▄▄▀▄▀ ▄█▄▄▄▄▄▄▀█▄▀█▀▄▄ ▀  ████
-██████▄▄▀ ▄▄▀ █▀▀ ▄ ▀ ▀█▄ ▀▄█▀ ▄█████
-████▄▄▄█▄▄▄▄ ▀███ ▀█▀▀█▀ ▄▄▄ ▀   ████
-████ ▄▄▄▄▄ █▄▀▄▀▄█▀█▄▄█▀ █▄█ ▀▄▄▀████
-████ █   █ █▄▄ ▄▄ ▄▄█ █▀ ▄▄ ▄ █ █████
-████ █▄▄▄█ ██ ▄▀███  ▀▄██  █▄▄▄ ▄████
-████▄▄▄▄▄▄▄█▄████▄▄███▄█▄███▄▄▄██████
-█████████████████████████████████████
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+█████████████████████████████████
+█████████████████████████████████
+████ ▄▄▄▄▄ █▄▄█▀ ▄▄ ██ ▄▄▄▄▄ ████
+████ █   █ █▄ ▄▄▀▄█▀██ █   █ ████
+████ █▄▄▄█ █▀ ▀██▀▀▄▄█ █▄▄▄█ ████
+████▄▄▄▄▄▄▄█▄▀ ▀ ▀▄█▄█▄▄▄▄▄▄▄████
+████▄▀▄█▀▀▄ █ █ █▄█▄▄▀▀ ▀█ ▀ ████
+████  ▄▀▄▄▄▀▄▄▄  ▄ ▄▄█▄█▄ ▄▀ ████
+█████▀ ▀█▄▄███▀▄█  ▄▄ █▄▄▄ ▀▀████
+████▄▄█ ▄▄▄ ▄▄▄▄█▀█  █▄█▀▀  ▀████
+████▄▄█▄▄█▄▄  ▀▄ ▄██ ▄▄▄  █▀▀████
+████ ▄▄▄▄▄ █▄▄ ▀ ▄ ▄ █▄█ ▀█  ████
+████ █   █ ██▀ ██   ▄▄▄▄ ▄█▄█████
+████ █▄▄▄█ █▄▀▀▄█▀█▄▄█▄█  ▀▄ ████
+████▄▄▄▄▄▄▄█▄█▄▄▄▄██▄█▄▄▄█▄▄▄████
+█████████████████████████████████
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 ```
 
 ## Install
@@ -47,17 +44,13 @@ $ cargo install --git https://github.com/thekuwayama/matter-qrcode-generator.git
 $ matter-qrcode-generator --help
 QR-code generator for Matter
 
-Usage: matter-qrcode-generator <VENDOR_ID> <PRODUCT_ID> <HARDWARE_VERSION> <SOFTWARE_VERSION> <SERIAL_NUMBER> <DEVICE_NAME> <PASSCODE> <DISCRIMINATOR>
+Usage: matter-qrcode-generator <VENDOR_ID> <PRODUCT_ID> <PASSCODE> <DISCRIMINATOR>
 
 Arguments:
-  <VENDOR_ID>         Vendor ID
-  <PRODUCT_ID>        Product ID
-  <HARDWARE_VERSION>  hardware version
-  <SOFTWARE_VERSION>  software version
-  <SERIAL_NUMBER>     serial number
-  <DEVICE_NAME>       device name
-  <PASSCODE>          passcode
-  <DISCRIMINATOR>     discriminator
+  <VENDOR_ID>      Vendor ID
+  <PRODUCT_ID>     Product ID
+  <PASSCODE>       passcode
+  <DISCRIMINATOR>  discriminator
 
 Options:
   -h, --help     Print help
