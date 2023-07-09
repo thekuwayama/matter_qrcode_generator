@@ -2,7 +2,7 @@ use crate::base38;
 use crate::onboarding_payload::{pack_onboarding_payload, CustomFlow, DiscoveryCapabilities};
 use anyhow::Result;
 
-pub(crate) fn compute_qr_version(qr_data: &str) -> i16 {
+pub fn compute_qr_version(qr_data: &str) -> i16 {
     match qr_data.len() {
         0..=38 => 2,
         39..=61 => 3,
@@ -11,7 +11,7 @@ pub(crate) fn compute_qr_version(qr_data: &str) -> i16 {
     }
 }
 
-pub(crate) fn pack_qr_data(
+pub fn pack_qr_data(
     vid: u16,
     pid: u16,
     custom_flow: CustomFlow,

@@ -105,7 +105,7 @@ pub(crate) fn pack_onboarding_payload(
 }
 
 #[allow(dead_code)]
-pub(crate) enum CustomFlow {
+pub enum CustomFlow {
     StandardCommissioningFlow,
     UserIntentCommissioningFlow,
     CustomCommissioningFlow,
@@ -123,14 +123,14 @@ impl CustomFlow {
     }
 }
 
-pub(crate) struct DiscoveryCapabilities {
+pub struct DiscoveryCapabilities {
     soft_ap: bool,
     ble: bool,
     on_ip_network: bool,
 }
 
 impl DiscoveryCapabilities {
-    pub(crate) fn new(soft_ap: bool, ble: bool, on_ip_network: bool) -> Self {
+    pub fn new(soft_ap: bool, ble: bool, on_ip_network: bool) -> Self {
         DiscoveryCapabilities {
             soft_ap,
             ble,
