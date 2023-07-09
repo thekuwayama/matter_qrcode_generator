@@ -9,25 +9,57 @@ on:
       - '*'
 
 jobs:
-  build:
+  clippy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-
     - uses: actions-rs/toolchain@v1
       with:
         profile: minimal
         toolchain: stable
         override: true
-
     - name: Install cargo-clippy
       run: rustup component add clippy
-
     - uses: actions-rs/cargo@v1
       with:
         command: clippy
         args: -- -D warnings
 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
     - uses: actions-rs/cargo@v1
       with:
         command: test
+
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: "14"
+    - run: npm install
+      working-directory: ./matter_qrcode_generator_wasm
+    - run: npm run lint
+      working-directory: ./matter_qrcode_generator_wasm
+
+  wasm_build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        target: wasm32-unknown-unknown
+        toolchain: stable
+        override: true
+    - name: Install wasm-pack
+      run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+    - run: wasm-pack build --target web --no-typescript
+      working-directory: ./matter_qrcode_generator_wasm

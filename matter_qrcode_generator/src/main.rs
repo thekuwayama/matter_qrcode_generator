@@ -62,13 +62,13 @@ fn print_qr(vid: u16, pid: u16, passcode: u32, discriminator: u16) -> Result<()>
         &qr_data,
         Version::Normal(needed_version),
         qrcode::EcLevel::M,
-    )
-    .unwrap();
+    )?;
     let image = code
         .render::<unicode::Dense1x2>()
         .dark_color(unicode::Dense1x2::Light)
         .light_color(unicode::Dense1x2::Dark)
         .build();
     println!("\n{}", image);
+
     Ok(())
 }
