@@ -18,7 +18,7 @@
     "scripts": {
         "lint": "eslint www/index.html www/js",
         "build:pre": "rm -rf public",
-        "build:wasm": "wasm-pack build --target web --no-typescript",
+        "build:wasm": "wasm-pack build --target web --no-typescript --features wee_alloc",
         "build:webpack": "webpack",
         "build": "run-s build:pre build:wasm build:webpack",
         "start": "cd public && http-server -o"
