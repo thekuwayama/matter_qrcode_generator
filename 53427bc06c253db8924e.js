@@ -536,14 +536,15 @@ function takeObject(idx) {
 * @param {boolean} soft_ap
 * @param {boolean} ble
 * @param {boolean} on_ip_nw
+* @param {number} pixel
 * @returns {string}
 */
-function do_print_qr(vid, pid, passcode, discriminator, soft_ap, ble, on_ip_nw) {
+function do_print_qr(vid, pid, passcode, discriminator, soft_ap, ble, on_ip_nw, pixel) {
     let deferred2_0;
     let deferred2_1;
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        wasm.do_print_qr(retptr, vid, pid, passcode, discriminator, soft_ap, ble, on_ip_nw);
+        wasm.do_print_qr(retptr, vid, pid, passcode, discriminator, soft_ap, ble, on_ip_nw, pixel);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         var r2 = getInt32Memory0()[retptr / 4 + 2];
@@ -662,7 +663,7 @@ async function __wbg_init(input) {
 /* 12 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "3e6dfcdd78fb853dcb1b.wasm";
+module.exports = __webpack_require__.p + "2da41ba29e7be387bcd9.wasm";
 
 /***/ })
 /******/ 	]);
@@ -823,10 +824,14 @@ function print_qr() {
         const pid = parseInt(document.getElementById('pid').value)
         const passcode = parseInt(document.getElementById('passcode').value)
         const discriminator = parseInt(document.getElementById('discriminator').value)
+        const softAP = document.getElementById('softAP').checked
+        const ble = document.getElementById('ble').checked
+        const onIPNW = document.getElementById('onIPNW').checked
+        const w = window.outerWidth / 5
 
         var qr
         try {
-            qr = (0,_pkg_matter_qrcode_generator_wasm_js__WEBPACK_IMPORTED_MODULE_1__.do_print_qr)(vid, pid, passcode, discriminator) // TODO: qr-code size
+            qr = (0,_pkg_matter_qrcode_generator_wasm_js__WEBPACK_IMPORTED_MODULE_1__.do_print_qr)(vid, pid, passcode, discriminator, softAP, ble, onIPNW, w)
         } catch(e) {
             alert(e)
             return
