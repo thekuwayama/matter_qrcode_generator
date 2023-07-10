@@ -13,10 +13,11 @@ export function print_qr() {
         const softAP = document.getElementById('softAP').checked
         const ble = document.getElementById('ble').checked
         const onIPNW = document.getElementById('onIPNW').checked
+        const w = window.outerWidth / 5
 
         var qr
         try {
-            qr = do_print_qr(vid, pid, passcode, discriminator, softAP, ble, onIPNW) // TODO: qr-code size
+            qr = do_print_qr(vid, pid, passcode, discriminator, softAP, ble, onIPNW, w)
         } catch(e) {
             alert(e)
             return

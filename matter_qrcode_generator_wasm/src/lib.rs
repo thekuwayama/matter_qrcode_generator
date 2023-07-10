@@ -14,6 +14,7 @@ cfg_if! {
     }
 }
 
+#[allow(clippy::too_many_arguments)]
 #[wasm_bindgen]
 pub fn do_print_qr(
     vid: u16,
@@ -23,6 +24,7 @@ pub fn do_print_qr(
     soft_ap: bool,
     ble: bool,
     on_ip_nw: bool,
+    pixel: u32,
 ) -> Result<String, JsValue> {
     let qr_data = match pack_qr_data(
         vid,
@@ -47,7 +49,7 @@ pub fn do_print_qr(
 
     Ok(code
         .render::<svg::Color>()
-        .min_dimensions(36, 36)
+        .min_dimensions(pixel, pixel)
         .quiet_zone(false)
         .dark_color(svg::Color("#000000"))
         .light_color(svg::Color("#ffffff"))
