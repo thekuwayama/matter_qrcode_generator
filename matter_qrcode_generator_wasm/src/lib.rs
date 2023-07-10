@@ -35,7 +35,7 @@ pub fn do_print_qr(
         passcode,
     ) {
         Ok(qr_data) => qr_data,
-        _ => return Err(JsValue::from("failed to pack QR code")),
+        Err(e) => return Err(JsValue::from(format!("failed to pack QR code; {}", e))),
     };
     let needed_version = compute_qr_version(&qr_data);
     let code = match QrCode::with_version(
@@ -44,7 +44,7 @@ pub fn do_print_qr(
         qrcode::EcLevel::M,
     ) {
         Ok(code) => code,
-        _ => return Err(JsValue::from("failed to pack QR code")),
+        Err(e) => return Err(JsValue::from(format!("failed to pack QR code; {}", e))),
     };
 
     Ok(code

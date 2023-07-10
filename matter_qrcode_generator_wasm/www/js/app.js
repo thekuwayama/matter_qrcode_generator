@@ -5,7 +5,6 @@ import '../css/style.css'
 // function
 export function print_qr() {
     init().then(() => {
-        // TODO: validate
         const vid = parseInt(document.getElementById('vid').value)
         const pid = parseInt(document.getElementById('pid').value)
         const passcode = parseInt(document.getElementById('passcode').value)
