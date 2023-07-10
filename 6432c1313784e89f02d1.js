@@ -663,7 +663,7 @@ async function __wbg_init(input) {
 /* 12 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "2da41ba29e7be387bcd9.wasm";
+module.exports = __webpack_require__.p + "3ed7b61e7f6deb5f1fb2.wasm";
 
 /***/ })
 /******/ 	]);
@@ -819,7 +819,6 @@ __webpack_require__.r(__webpack_exports__);
 // function
 function print_qr() {
     (0,_pkg_matter_qrcode_generator_wasm_js__WEBPACK_IMPORTED_MODULE_1__["default"])().then(() => {
-        // TODO: validate
         const vid = parseInt(document.getElementById('vid').value)
         const pid = parseInt(document.getElementById('pid').value)
         const passcode = parseInt(document.getElementById('passcode').value)
