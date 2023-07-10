@@ -10,10 +10,13 @@ export function print_qr() {
         const pid = parseInt(document.getElementById('pid').value)
         const passcode = parseInt(document.getElementById('passcode').value)
         const discriminator = parseInt(document.getElementById('discriminator').value)
+        const softAP = document.getElementById('softAP').checked
+        const ble = document.getElementById('ble').checked
+        const onIPNW = document.getElementById('onIPNW').checked
 
         var qr
         try {
-            qr = do_print_qr(vid, pid, passcode, discriminator) // TODO: qr-code size
+            qr = do_print_qr(vid, pid, passcode, discriminator, softAP, ble, onIPNW) // TODO: qr-code size
         } catch(e) {
             alert(e)
             return

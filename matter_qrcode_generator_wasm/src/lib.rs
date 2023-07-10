@@ -20,12 +20,15 @@ pub fn do_print_qr(
     pid: u16,
     passcode: u32,
     discriminator: u16,
+    soft_ap: bool,
+    ble: bool,
+    on_ip_nw: bool,
 ) -> Result<String, JsValue> {
     let qr_data = match pack_qr_data(
         vid,
         pid,
         CustomFlow::StandardCommissioningFlow, //  Standard commissioning flow
-        DiscoveryCapabilities::new(true, true, true),
+        DiscoveryCapabilities::new(soft_ap, ble, on_ip_nw),
         discriminator,
         passcode,
     ) {
