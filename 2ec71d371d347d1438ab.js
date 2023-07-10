@@ -533,14 +533,17 @@ function takeObject(idx) {
 * @param {number} pid
 * @param {number} passcode
 * @param {number} discriminator
+* @param {boolean} soft_ap
+* @param {boolean} ble
+* @param {boolean} on_ip_nw
 * @returns {string}
 */
-function do_print_qr(vid, pid, passcode, discriminator) {
+function do_print_qr(vid, pid, passcode, discriminator, soft_ap, ble, on_ip_nw) {
     let deferred2_0;
     let deferred2_1;
     try {
         const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-        wasm.do_print_qr(retptr, vid, pid, passcode, discriminator);
+        wasm.do_print_qr(retptr, vid, pid, passcode, discriminator, soft_ap, ble, on_ip_nw);
         var r0 = getInt32Memory0()[retptr / 4 + 0];
         var r1 = getInt32Memory0()[retptr / 4 + 1];
         var r2 = getInt32Memory0()[retptr / 4 + 2];
@@ -659,7 +662,7 @@ async function __wbg_init(input) {
 /* 12 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "a56d0092029da90b4859.wasm";
+module.exports = __webpack_require__.p + "3e6dfcdd78fb853dcb1b.wasm";
 
 /***/ })
 /******/ 	]);
