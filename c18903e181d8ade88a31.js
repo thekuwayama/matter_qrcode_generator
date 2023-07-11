@@ -663,7 +663,7 @@ async function __wbg_init(input) {
 /* 12 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "23dc28b52f8985530df9.wasm";
+module.exports = __webpack_require__.p + "9d9831a98d07faf1da16.wasm";
 
 /***/ })
 /******/ 	]);
