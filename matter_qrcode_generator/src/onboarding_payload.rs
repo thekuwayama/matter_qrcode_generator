@@ -1,4 +1,7 @@
 use anyhow::{anyhow, Result};
+use once_cell::sync::Lazy;
+
+static DISCRIMINATOR_MAX: Lazy<u16> = Lazy::new(|| u16::pow(2, 12) - 1);
 
 struct OnboardingPayload {
     version: u8,
@@ -20,7 +23,7 @@ impl OnboardingPayload {
         discriminator: u16,
         passcode: u32,
     ) -> Result<Self> {
-        if discriminator > u16::pow(2, 12) - 1 {
+        if discriminator > *DISCRIMINATOR_MAX {
             return Err(anyhow!(
                 "A Discriminator SHALL be included as a 12-bit unsigned integer."
             ));
