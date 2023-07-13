@@ -1,4 +1,6 @@
 use anyhow::{anyhow, Result};
+use bitvec::order::Lsb0;
+use bitvec::vec::BitVec;
 use once_cell::sync::Lazy;
 
 static DISCRIMINATOR_MAX: Lazy<u16> = Lazy::new(|| u16::pow(2, 12) - 1);
@@ -47,25 +49,59 @@ impl OnboardingPayload {
     }
 
     fn serialize(&self) -> Vec<u8> {
-        let mut res = vec![0; 11];
+        const VERSION_LEN: usize = 3;
+        const VENDOR_ID_LEN: usize = 16;
+        const PRODUCT_ID_LEN: usize = 16;
+        const CUSTOM_FLOW_LEN: usize = 2;
+        const DISCOVERY_CAPABILITIES_LEN: usize = 8;
+        const DISCRIMINATOR_LEN: usize = 12;
+        const PASSCODE_LEN: usize = 27;
+        const PADDING_LEN: usize = 4;
+        let mut bv: BitVec<u8, Lsb0> = BitVec::with_capacity(
+            VERSION_LEN
+                + VENDOR_ID_LEN
+                + PRODUCT_ID_LEN
+                + CUSTOM_FLOW_LEN
+                + DISCOVERY_CAPABILITIES_LEN
+                + DISCRIMINATOR_LEN
+                + PASSCODE_LEN
+                + PADDING_LEN,
+        );
 
-        let d = self.discovery_capabilities.bits();
-        res[0] = self.version.reverse_bits() | (self.vendor_id.reverse_bits() >> 11) as u8;
-        res[1] = ((self.vendor_id.reverse_bits() << 5) >> 8) as u8;
-        res[2] = ((self.vendor_id.reverse_bits() << 13) >> 8) as u8
-            | (self.product_id.reverse_bits() >> 11) as u8;
-        res[3] = ((self.product_id.reverse_bits() << 5) >> 8) as u8;
-        res[4] = ((self.product_id.reverse_bits() << 13) >> 8) as u8
-            | (self.custom_flow.bits().reverse_bits() >> 3)
-            | (d.reverse_bits() >> 5);
-        res[5] = (d.reverse_bits() << 3) | (self.discriminator.reverse_bits() >> 13) as u8;
-        res[6] = ((self.discriminator.reverse_bits() << 3) >> 8) as u8;
-        res[7] = ((self.discriminator.reverse_bits() << 11) >> 8) as u8
-            | (self.passcode.reverse_bits() >> 25) as u8;
-        res[8] = ((self.passcode.reverse_bits() << 7) >> 24) as u8;
-        res[9] = ((self.passcode.reverse_bits() << 15) >> 24) as u8;
-        res[10] = ((self.passcode.reverse_bits() << 23) >> 24) as u8;
-        res.into_iter().map(|byte| byte.reverse_bits()).collect()
+        let mut version = BitVec::<_, Lsb0>::from_element(self.version);
+        version.truncate(VERSION_LEN);
+        bv.append(&mut version);
+
+        let mut vendor_id = BitVec::<_, Lsb0>::from_element(self.vendor_id);
+        // bv.truncate(VENDOR_ID_LEN);
+        bv.append(&mut vendor_id);
+
+        let mut product_id = BitVec::<_, Lsb0>::from_element(self.product_id);
+        // bv.truncate(PRODUCT_ID_LEN);
+        bv.append(&mut product_id);
+
+        let mut custom_flow = BitVec::<_, Lsb0>::from_element(self.custom_flow.bits());
+        custom_flow.truncate(CUSTOM_FLOW_LEN);
+        bv.append(&mut custom_flow);
+
+        let mut discovery_capabilities =
+            BitVec::<_, Lsb0>::from_element(self.discovery_capabilities.bits());
+        discovery_capabilities.truncate(DISCOVERY_CAPABILITIES_LEN);
+        bv.append(&mut discovery_capabilities);
+
+        let mut discriminator = BitVec::<_, Lsb0>::from_element(self.discriminator);
+        discriminator.truncate(DISCRIMINATOR_LEN);
+        bv.append(&mut discriminator);
+
+        let mut passcode = BitVec::<_, Lsb0>::from_element(self.passcode);
+        passcode.truncate(PASSCODE_LEN);
+        bv.append(&mut passcode);
+
+        let mut padding = BitVec::<_, Lsb0>::from_element(0u8);
+        padding.truncate(PADDING_LEN);
+        bv.append(&mut padding);
+
+        bv.into_vec()
     }
 
     fn validate_passcode(&self) -> bool {
