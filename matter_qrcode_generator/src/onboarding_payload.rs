@@ -175,22 +175,11 @@ impl DiscoveryCapabilities {
         }
     }
 
-    fn bits(&self) -> BitVec {
-        let mut byte = 0;
-        if self.soft_ap {
-            byte |= 1;
-        }
-
-        if self.ble {
-            byte |= 1 << 1;
-        }
-
-        if self.on_ip_network {
-            byte |= 1 << 2;
-        }
-
-        let mut bits = BitVec::<_, Lsb0>::from_element(byte);
-        bits.truncate(OnboardingPayload::DISCOVERY_CAPABILITIES_BITS_LEN);
-        bits
+    fn bits(&self) -> BitVec<u8> {
+        let mut bv = BitVec::<_, Lsb0>::from_element(0u8);
+        bv.set(0, self.soft_ap);
+        bv.set(1, self.ble);
+        bv.set(2, self.on_ip_network);
+        bv
     }
 }

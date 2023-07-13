@@ -68,13 +68,13 @@ mod tests {
                 65521,
                 32768,
                 CustomFlow::StandardCommissioningFlow,
-                DiscoveryCapabilities::new(false, true, false),
+                DiscoveryCapabilities::new(true, true, false),
                 3840,
                 20202021,
             );
             let base38_encoded = base38::encode(&payload.unwrap());
             let qr_data = &format!("MT:{}", base38_encoded);
-            assert_eq!(qr_data, "MT:Y.K9042C00KA0648G00");
+            assert_eq!(qr_data, "MT:Y.K90QRH00KA0648G00");
         }
     }
 }
