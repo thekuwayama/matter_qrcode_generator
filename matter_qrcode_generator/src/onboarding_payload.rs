@@ -17,6 +17,15 @@ struct OnboardingPayload {
 }
 
 impl OnboardingPayload {
+    const VERSION_BITS_LEN: usize = 3;
+    const VENDOR_ID_BITS_LEN: usize = 16;
+    const PRODUCT_ID_BITS_LEN: usize = 16;
+    const CUSTOM_FLOW_BITS_LEN: usize = 2;
+    const DISCOVERY_CAPABILITIES_BITS_LEN: usize = 8;
+    const DISCRIMINATOR_BITS_LEN: usize = 12;
+    const PASSCODE_BITS_LEN: usize = 27;
+    const PADDING_BITS_LEN: usize = 4;
+
     pub fn new(
         vid: u16,
         pid: u16,
@@ -49,56 +58,43 @@ impl OnboardingPayload {
     }
 
     fn serialize(&self) -> Vec<u8> {
-        const VERSION_LEN: usize = 3;
-        const VENDOR_ID_LEN: usize = 16;
-        const PRODUCT_ID_LEN: usize = 16;
-        const CUSTOM_FLOW_LEN: usize = 2;
-        const DISCOVERY_CAPABILITIES_LEN: usize = 8;
-        const DISCRIMINATOR_LEN: usize = 12;
-        const PASSCODE_LEN: usize = 27;
-        const PADDING_LEN: usize = 4;
         let mut bv: BitVec<u8, Lsb0> = BitVec::with_capacity(
-            VERSION_LEN
-                + VENDOR_ID_LEN
-                + PRODUCT_ID_LEN
-                + CUSTOM_FLOW_LEN
-                + DISCOVERY_CAPABILITIES_LEN
-                + DISCRIMINATOR_LEN
-                + PASSCODE_LEN
-                + PADDING_LEN,
+            OnboardingPayload::VERSION_BITS_LEN
+                + OnboardingPayload::VENDOR_ID_BITS_LEN
+                + OnboardingPayload::PRODUCT_ID_BITS_LEN
+                + OnboardingPayload::CUSTOM_FLOW_BITS_LEN
+                + OnboardingPayload::DISCOVERY_CAPABILITIES_BITS_LEN
+                + OnboardingPayload::DISCRIMINATOR_BITS_LEN
+                + OnboardingPayload::PASSCODE_BITS_LEN
+                + OnboardingPayload::PADDING_BITS_LEN,
         );
 
         let mut version = BitVec::<_, Lsb0>::from_element(self.version);
-        version.truncate(VERSION_LEN);
+        version.truncate(OnboardingPayload::VERSION_BITS_LEN);
         bv.append(&mut version);
 
         let mut vendor_id = BitVec::<_, Lsb0>::from_element(self.vendor_id);
-        // bv.truncate(VENDOR_ID_LEN);
+        // vendor_id.truncate(OnboardingPayload::VENDOR_ID_BITS_LEN);
         bv.append(&mut vendor_id);
 
         let mut product_id = BitVec::<_, Lsb0>::from_element(self.product_id);
-        // bv.truncate(PRODUCT_ID_LEN);
+        // product_id.truncate(OnboardingPayload::PRODUCT_ID_BITS_LEN);
         bv.append(&mut product_id);
 
-        let mut custom_flow = BitVec::<_, Lsb0>::from_element(self.custom_flow.bits());
-        custom_flow.truncate(CUSTOM_FLOW_LEN);
-        bv.append(&mut custom_flow);
+        bv.append(&mut self.custom_flow.bits());
 
-        let mut discovery_capabilities =
-            BitVec::<_, Lsb0>::from_element(self.discovery_capabilities.bits());
-        discovery_capabilities.truncate(DISCOVERY_CAPABILITIES_LEN);
-        bv.append(&mut discovery_capabilities);
+        bv.append(&mut self.discovery_capabilities.bits());
 
         let mut discriminator = BitVec::<_, Lsb0>::from_element(self.discriminator);
-        discriminator.truncate(DISCRIMINATOR_LEN);
+        discriminator.truncate(OnboardingPayload::DISCRIMINATOR_BITS_LEN);
         bv.append(&mut discriminator);
 
         let mut passcode = BitVec::<_, Lsb0>::from_element(self.passcode);
-        passcode.truncate(PASSCODE_LEN);
+        passcode.truncate(OnboardingPayload::PASSCODE_BITS_LEN);
         bv.append(&mut passcode);
 
         let mut padding = BitVec::<_, Lsb0>::from_element(0u8);
-        padding.truncate(PADDING_LEN);
+        padding.truncate(OnboardingPayload::PADDING_BITS_LEN);
         bv.append(&mut padding);
 
         bv.into_vec()
@@ -152,13 +148,15 @@ pub enum CustomFlow {
 }
 
 impl CustomFlow {
-    fn bits(&self) -> u8 {
-        match &self {
+    fn bits(&self) -> BitVec {
+        let mut bits = BitVec::<_, Lsb0>::from_element(match &self {
             CustomFlow::StandardCommissioningFlow => 0,
             CustomFlow::UserIntentCommissioningFlow => 1,
             CustomFlow::CustomCommissioningFlow => 2,
             CustomFlow::Reserved => 4,
-        }
+        });
+        bits.truncate(OnboardingPayload::CUSTOM_FLOW_BITS_LEN);
+        bits
     }
 }
 
@@ -177,20 +175,22 @@ impl DiscoveryCapabilities {
         }
     }
 
-    fn bits(&self) -> u8 {
-        let mut res = 0u8;
+    fn bits(&self) -> BitVec {
+        let mut byte = 0;
         if self.soft_ap {
-            res |= 1;
+            byte |= 1;
         }
 
         if self.ble {
-            res |= 1 << 1;
+            byte |= 1 << 1;
         }
 
         if self.on_ip_network {
-            res |= 1 << 2;
+            byte |= 1 << 2;
         }
 
-        res
+        let mut bits = BitVec::<_, Lsb0>::from_element(byte);
+        bits.truncate(OnboardingPayload::DISCOVERY_CAPABILITIES_BITS_LEN);
+        bits
     }
 }
