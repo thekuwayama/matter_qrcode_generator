@@ -14,6 +14,6 @@ crate-type = ["cdylib"]
 cfg-if = "1.0"
 js-sys = "0.3"
 matter_qrcode_generator = { path = "../matter_qrcode_generator", version = "0.1" }
-qrcode = { version = "0.12", default-features = false, features = ["svg"] }
+qrcode = { version = "0.14", default-features = false, features = ["svg"] }
 wasm-bindgen = "0.2"
 wee_alloc = { version = "0.4", optional = true }

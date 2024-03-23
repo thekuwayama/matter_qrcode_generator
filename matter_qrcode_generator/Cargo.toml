@@ -12,4 +12,4 @@ anyhow = "1.0"
 bitvec = "1.0"
 clap = { version = "4.3", features = ["cargo", "derive"] }
 once_cell = "1.18"
-qrcode = "0.12"
+qrcode = "0.14"
