@@ -6,11 +6,6 @@
 
 `matter_qrcode_generator` is QR-code generator for Matter.
 
-
-```sh-session
-$ matter_qrcode_generator 65521 32770 123456 250
-```
-
 ![cli-demo](docs/cli-demo.gif)
 
 
@@ -42,8 +37,14 @@ Options:
   -V, --version  Print version
 ```
 
+For example:
 
-## GUI
+```sh-session
+$ matter_qrcode_generator 65521 32770 123456 250
+```
+
+
+## Web App with Wasm
 `matter_qrcode_generator_wasm` is a Web Application to print QR-code using Wasm.
 
 - https://thekuwayama.github.io/matter_qrcode_generator/
