@@ -3,7 +3,7 @@ import init, {do_print_qr} from '../../pkg/matter_qrcode_generator_wasm.js'
 import '../css/style.css'
 
 // function
-export function print_qr() {
+export function printQR() {
     init().then(() => {
         const vid = parseInt(document.getElementById('vid').value)
         const pid = parseInt(document.getElementById('pid').value)
@@ -27,8 +27,22 @@ export function print_qr() {
         }
 
         document.getElementById('qr').innerHTML = qr
+        document.getElementById('download').style.display = ''
     })
 }
 
+export function downloadSVG() {
+    const svg = document.getElementById('qr').innerHTML
+    const blob = new Blob([svg.toString()])
+    const a = document.createElement('a')
+    a.download = 'qr.svg'
+    a.href = window.URL.createObjectURL(blob)
+
+    document.body.appendChild(a)
+    a.click()
+    a.remove()
+}
+
 // init
-document.getElementById('print').onclick = print_qr
+document.getElementById('print').onclick = printQR
+document.getElementById('download').onclick = downloadSVG
