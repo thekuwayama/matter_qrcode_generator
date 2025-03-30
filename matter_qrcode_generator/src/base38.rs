@@ -8,9 +8,9 @@ pub(crate) fn encode(bytes: &[u8]) -> String {
         .chunks(3)
         .map(|bytes| match bytes.len() {
             1 => do_encode(bytes[0] as u32, 2),
-            2 => do_encode((bytes[1] as u32) << 8 | (bytes[0] as u32), 4),
+            2 => do_encode(((bytes[1] as u32) << 8) | (bytes[0] as u32), 4),
             3 => do_encode(
-                (bytes[2] as u32) << 16 | (bytes[1] as u32) << 8 | (bytes[0] as u32),
+                ((bytes[2] as u32) << 16) | ((bytes[1] as u32) << 8) | (bytes[0] as u32),
                 5,
             ),
             _ => unreachable!(),
