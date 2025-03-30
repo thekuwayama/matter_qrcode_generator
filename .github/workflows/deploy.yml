@@ -9,19 +9,19 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: jetli/wasm-pack-action@v0.3.0
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+    - uses: jetli/wasm-pack-action@v0.4.0
       with:
         version: latest
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3.8.2
       with:
-        node-version: "14"
+        node-version: "22"
     - run: npm install
       working-directory: ./matter_qrcode_generator_wasm
     - run: npm run build
       working-directory: ./matter_qrcode_generator_wasm
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./matter_qrcode_generator_wasm/public/
