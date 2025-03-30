@@ -1,9 +1,9 @@
 use anyhow::{anyhow, Result};
 use bitvec::order::Lsb0;
 use bitvec::vec::BitVec;
-use once_cell::sync::Lazy;
+use std::sync::LazyLock;
 
-static DISCRIMINATOR_MAX: Lazy<u16> = Lazy::new(|| u16::pow(2, 12) - 1);
+static DISCRIMINATOR_MAX: LazyLock<u16> = LazyLock::new(|| u16::pow(2, 12) - 1);
 
 struct OnboardingPayload {
     version: u8,
