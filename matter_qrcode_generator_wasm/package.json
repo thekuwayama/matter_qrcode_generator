@@ -3,17 +3,17 @@
     "version": "0.1.0",
     "private": true,
     "devDependencies": {
-        "@html-eslint/eslint-plugin": "^0.13.1",
-        "@html-eslint/parser": "^0.13.1",
-        "css-loader": "^6.7.1",
-        "eslint": "^8.12.0",
-        "eslint-plugin-html": "^6.2.0",
-        "html-webpack-plugin": "^5.5.0",
-        "http-server": "^14.1.0",
-        "npm-run-all": "^4.1.2",
-        "style-loader": "^3.3.1",
-        "webpack": "^5.72.0",
-        "webpack-cli": "^4.9.2"
+        "@html-eslint/eslint-plugin": "^0.37.0",
+        "@html-eslint/parser": "^0.37.0",
+        "css-loader": "^7.1.2",
+        "eslint": "^9.23.0",
+        "eslint-plugin-html": "^8.1.2",
+        "html-webpack-plugin": "^5.6.3",
+        "http-server": "^14.1.1",
+        "npm-run-all": "^4.1.5",
+        "style-loader": "^4.0.0",
+        "webpack": "^5.98.0",
+        "webpack-cli": "^6.0.1"
     },
     "scripts": {
         "lint": "eslint www/index.html www/js",
