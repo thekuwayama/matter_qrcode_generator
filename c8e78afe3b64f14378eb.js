@@ -193,7 +193,7 @@ async function __wbg_init(module_or_path) {
 /* 2 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "7e89ae31ce449fe81d45.wasm";
+module.exports = __webpack_require__.p + "401af2d5df915cb591e1.wasm";
 
 /***/ }),
 /* 3 */
