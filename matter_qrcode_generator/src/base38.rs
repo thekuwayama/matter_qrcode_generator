@@ -38,9 +38,9 @@ mod tests {
 
     #[test]
     fn base38_encode() {
-        assert_eq!(encode(&vec![0xde, 0xad, 0xbe, 0xef]), "C.R.5B6");
-        assert_eq!(encode(&vec![]), "");
-        assert_eq!(encode(&vec![0x00]), "00");
-        assert_eq!(encode(&vec![0xff, 0xff, 0xff, 0xff]), "PLS18R6");
+        assert_eq!(encode(&[0xde, 0xad, 0xbe, 0xef]), "C.R.5B6");
+        assert_eq!(encode(&[]), "");
+        assert_eq!(encode(&[0x00]), "00");
+        assert_eq!(encode(&[0xff, 0xff, 0xff, 0xff]), "PLS18R6");
     }
 }
