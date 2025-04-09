@@ -10,5 +10,7 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0"
 bitvec = "1.0"
-clap = { version = "4.3", features = ["cargo", "derive"] }
+clap = { version = "4.3", features = ["cargo"] }
+image = "0.25"
 qrcode = "0.14"
+regex = "1.11"
