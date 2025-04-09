@@ -24,7 +24,7 @@ $ cargo install --git https://github.com/thekuwayama/matter_qrcode_generator.git
 $ matter_qrcode_generator --help
 QR-code generator for Matter
 
-Usage: matter_qrcode_generator <VENDOR_ID> <PRODUCT_ID> <PASSCODE> <DISCRIMINATOR>
+Usage: matter_qrcode_generator [OPTIONS] <VENDOR_ID> <PRODUCT_ID> <PASSCODE> <DISCRIMINATOR>
 
 Arguments:
   <VENDOR_ID>      Vendor ID
@@ -33,8 +33,9 @@ Arguments:
   <DISCRIMINATOR>  discriminator
 
 Options:
-  -h, --help     Print help
-  -V, --version  Print version
+  -f, --file <FILE>  path to the .png output file
+  -h, --help         Print help
+  -V, --version      Print version
 ```
 
 For example:
@@ -43,6 +44,9 @@ For example:
 $ matter_qrcode_generator 65521 32770 123456 250
 ```
 
+```sh-session
+$ matter_qrcode_generator 65521 32770 123456 250 --file output.png
+```
 
 ## Web App with Wasm
 `matter_qrcode_generator_wasm` is a Web Application to print QR-code using Wasm.
